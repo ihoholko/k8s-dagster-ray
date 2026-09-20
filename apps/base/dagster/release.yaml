@@ -1,0 +1,50 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dagster
+  namespace: dagster
+spec:
+  interval: 30m
+  releaseName: dagster
+  chart:
+    spec:
+      chart: dagster
+      version: "1.13.x"
+      sourceRef:
+        kind: HelmRepository
+        name: dagster
+        namespace: dagster
+  install:
+    strategy:
+      name: RetryOnFailure
+  upgrade:
+    strategy:
+      name: RetryOnFailure
+
+  # https://github.com/dagster-io/dagster/blob/6eb888da8cd57770e698a07de803d5b914ab04a2/helm/dagster/values.yaml
+  values:
+    dagsterDaemon:
+      enabled: true
+    dagsterWebserver:
+      replicaCount: 1
+    dagster-user-deployments:
+      enabled: true
+      deployments:
+        - name: user-code-example
+          image:
+            repository: docker.io/dagster/user-code-example
+            tag: ~
+          pullPolicy: Always
+          dagsterApiGrpcArgs:
+            - "--python-file"
+            - "/example_project/example_repo/repo.py"
+          replicaCount: 1
+    runLauncher:
+      type: K8sRunLauncher
+      config:
+        k8sRunLauncher:
+          jobNamespace: dagster
+          imagePullPolicy: Always
+          runK8sConfig:
+            jobSpecConfig:
+              ttlSecondsAfterFinished: 7200

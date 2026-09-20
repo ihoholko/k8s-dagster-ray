@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dagster
+spec:
+  chart:
+    spec:
+      version: ">=1.13.0 <1.14.0"
+  values:
+    dagsterWebserver:
+      replicaCount: 2
+    dagster-user-deployments:
+      deployments:
+        - name: user-code-example
+          image:
+            tag: ~
+          replicaCount: 2
