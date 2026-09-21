@@ -4,6 +4,7 @@ resources:
   - ../base/podinfo
   - ../base/dagster
   - ../base/backend-ci
+  - backend-ci/backend-ci-image-updater.yaml
 
 patches:
   - path: podinfo-values.yaml
