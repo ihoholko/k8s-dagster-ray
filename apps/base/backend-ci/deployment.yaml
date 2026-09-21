@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-ci
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-ci
+
+  template:
+    metadata:
+      labels:
+        app: backend-ci
+
+    spec:
+      imagePullSecrets:
+        - name: ghcr-credentials
+      containers:
+        - name: backend-ci
+          image: ghcr.io/ihoholko/backend-ci:0.1.0
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "128Mi"
+            limits:
+              cpu: "50m"
+              memory: "128Mi"
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 20

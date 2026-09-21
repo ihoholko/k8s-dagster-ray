@@ -3,11 +3,19 @@ kind: Kustomization
 resources:
   - ../base/podinfo
   - ../base/dagster
+  - ../base/backend-ci
+
 patches:
   - path: podinfo-values.yaml
     target:
       kind: HelmRelease
       name: podinfo
+
   - path: dagster-values.yaml
     target:
       kind: HelmRelease
+      
+  - path: backend-ci-patch.yaml
+    target:
+      kind: Deployment
+      name: backend-ci

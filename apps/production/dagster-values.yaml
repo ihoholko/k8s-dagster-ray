@@ -11,7 +11,10 @@ spec:
       replicaCount: 2
     dagster-user-deployments:
       deployments:
-        - name: user-code-example
+        - name: dagster-pipelines
           image:
             tag: ~
+            repository: "docker.io/dagster/user-code-example"
+            pullPolicy: IfNotPresent
           replicaCount: 2
+          port: 3030

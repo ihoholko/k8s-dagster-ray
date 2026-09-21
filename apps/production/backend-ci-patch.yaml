@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-ci
+spec:
+  template:
+    spec:
+      containers:
+        - name: backend-ci
+          image: ghcr.io/ihoholko/backend-ci:0.1.0
+         
