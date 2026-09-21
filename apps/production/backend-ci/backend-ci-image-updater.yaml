@@ -1,0 +1,36 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: backend-ci-image-updater
+  namespace: default
+spec:
+  interval: 12h
+  targetNamespace: default
+  timeout: 5m # give up waiting after 5 minutes
+  retryInterval: 5m # retry every 5 minutes on apply or waiting failures
+  sourceRef:
+    kind: GitRepository
+    name: k8s-dagster-ray
+    namespace: flux-system
+  path: ./templates/image-auto-updater
+  prune: true
+  postBuild:
+    substitute:
+      repository: ghcr.io/ihoholko/backend-ci
+      app_name: backend-ci
+      reg_secret: ghcr-credentials
+  patches:
+    - patch: |-
+        apiVersion: image.toolkit.fluxcd.io/v1beta2
+        kind: ImagePolicy
+        metadata:
+          name: not-used
+        spec:
+          policy:
+            semver:
+              range: '>=0.1.0'
+          policy:
+            numerical:
+              order: asc
+      target:
+        kind: ImagePolicy

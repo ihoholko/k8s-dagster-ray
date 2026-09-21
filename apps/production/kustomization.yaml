@@ -14,8 +14,8 @@ patches:
   - path: dagster-values.yaml
     target:
       kind: HelmRelease
-      
-  - path: backend-ci-patch.yaml
+
+  - path: backend-ci/backend-ci-patch.yaml
     target:
       kind: Deployment
       name: backend-ci

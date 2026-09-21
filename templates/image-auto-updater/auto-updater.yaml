@@ -1,0 +1,44 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: ${app_name}
+spec:
+  image: "${repository}"
+  interval: 1m
+  secretRef:
+    name: ${reg_secret}
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: ${app_name}
+spec:
+  imageRepositoryRef:
+    name: ${app_name}
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageUpdateAutomation
+metadata:
+  name: ${app_name}
+spec:
+  interval: 1m
+  sourceRef:
+    kind: GitRepository
+    name: k8s-dagster-ray
+    namespace: flux-system
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+      messageTemplate: "{{range .Updated.Images}}{{println .}}{{end}}"
+    push:
+      branch: main
+  update:
+    path: .
+    strategy: Setters
+---
+
