@@ -10,7 +10,7 @@ spec:
   retryInterval: 5m # retry every 5 minutes on apply or waiting failures
   sourceRef:
     kind: GitRepository
-    name: k8s-dagster-ray
+    name: flux-system
     namespace: flux-system
   path: ./templates/image-auto-updater
   prune: true
