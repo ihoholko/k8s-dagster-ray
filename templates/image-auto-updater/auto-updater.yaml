@@ -24,7 +24,7 @@ spec:
   interval: 1m
   sourceRef:
     kind: GitRepository
-    name: k8s-dagster-ray
+    name: flux-system
     namespace: flux-system
   git:
     checkout:
