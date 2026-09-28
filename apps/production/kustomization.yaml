@@ -4,7 +4,10 @@ resources:
   # - ../base/podinfo
   # - ../base/dagster
   - ../base/backend-ci
-  - backend-ci/backend-ci-image-updater.yaml
+
+images:
+  - name: ghcr.io/ihoholko/backend-ci
+    newTag: 0.1.0
 
 patches:
   # - path: podinfo-values.yaml
