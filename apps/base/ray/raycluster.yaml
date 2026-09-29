@@ -14,19 +14,27 @@ spec:
 
     template:
       spec:
+        imagePullSecrets:
+          - name: ghcr-credentials
+
         containers:
           - name: ray-head
-            image: ghcr.io/ihoholko/ray:0.1.0
+            image: ghcr.io/ihoholko/ray-cpu:0.1.1
 
             resources:
               requests:
                 cpu: "2"
                 memory: 4Gi
               limits:
-                cpu: "4"
-                memory: 8Gi
+                cpu: "2"
+                memory: 4Gi
 
   workerGroupSpecs:
+
+    # --------------------------------
+    # CPU workers
+    # --------------------------------
+
     - groupName: cpu-workers
       replicas: 1
       minReplicas: 0
@@ -34,9 +42,12 @@ spec:
 
       template:
         spec:
+          imagePullSecrets:
+            - name: ghcr-credentials
+
           containers:
             - name: ray-worker
-              image: ghcr.io/ihoholko/ray:0.1.0
+              image: ghcr.io/ihoholko/ray-cpu:0.1.1
 
               resources:
                 requests:
@@ -45,3 +56,37 @@ spec:
                 limits:
                   cpu: "1"
                   memory: 1Gi
+
+    # --------------------------------
+    # GPU workers
+    # --------------------------------
+
+    # - groupName: gpu-workers
+
+    #   replicas: 0
+    #   minReplicas: 0
+    #   maxReplicas: 1
+
+    #   template:
+    #     spec:
+    #       imagePullSecrets:
+    #         - name: ghcr-credentials
+
+    #       nodeSelector:
+    #         accelerator: nvidia
+
+    #       containers:
+    #         - name: ray-worker
+    #           image: ghcr.io/ihoholko/ray:0.1.0
+    #           imagePullPolicy: IfNotPresent
+
+    #           resources:
+    #             requests:
+    #               cpu: "4"
+    #               memory: 8Gi
+    #               nvidia.com/gpu: "1"
+
+    #             limits:
+    #               cpu: "4"
+    #               memory: 8Gi
+    #               nvidia.com/gpu: "1"
