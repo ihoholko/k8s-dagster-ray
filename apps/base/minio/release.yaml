@@ -21,6 +21,10 @@ spec:
     strategy:
       name: RetryOnFailure
   values:
+    image:
+      repository: docker.io/minio/minio
+      tag: RELEASE.2024-12-18T13-15-44Z
+      pullPolicy: IfNotPresent
     mode: standalone
     replicas: 1
     rootUser: minioadmin
