@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - ../base/dagster
   - ../base/backend-ci
-  - ../base/minio
   - backend-ci/backend-ci-image-updater.yaml
   - dagster/dagster-pipelines-image-updater.yaml
 
@@ -11,11 +10,6 @@ patches:
   - path: dagster/dagster-values.yaml
     target:
       kind: HelmRelease
-
-  - path: minio-values.yaml
-    target:
-      kind: HelmRelease
-      name: minio
 
   - path: backend-ci/backend-ci-patch.yaml
     target:
