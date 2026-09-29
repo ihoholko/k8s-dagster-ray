@@ -14,7 +14,7 @@ spec:
         - name: dagster-pipelines
           image:
             repository: ghcr.io/ihoholko/dagster-pipelines
-            tag: 0.1.1 # {"$imagepolicy": "dagster:dagster-pipelines:tag"}
+            tag: 0.1.2 # {"$imagepolicy": "dagster:dagster-pipelines:tag"}
             pullPolicy: Always
           replicaCount: 2
           port: 3030
