@@ -44,8 +44,8 @@ spec:
             tag: ~
           pullPolicy: Always
           dagsterApiGrpcArgs:
-            - "--python-file"
-            - "/deploy_k8s/definitions.py"
+            - "--module-name"
+            - "dagster_pipelines.definitions"
           envSecrets:
             - name: dagster-pipelines-secrets
           replicaCount: 1
