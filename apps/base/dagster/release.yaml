@@ -27,18 +27,29 @@ spec:
       enabled: true
     dagsterWebserver:
       replicaCount: 1
+      workspace:
+        enabled: true
+        servers:
+          - host: "dagster-pipelines"
+            port: 3030
+            name: "dagster-pipelines"
     dagster-user-deployments:
       enabled: true
+      imagePullSecrets:
+      - name: ghcr-credentials
       deployments:
-        - name: user-code-example
+        - name: dagster-pipelines
           image:
-            repository: docker.io/dagster/user-code-example
+            repository: ghcr.io/ihoholko/dagster-pipelines
             tag: ~
           pullPolicy: Always
           dagsterApiGrpcArgs:
             - "--python-file"
-            - "/example_project/example_repo/repo.py"
+            - "/deploy_k8s/definitions.py"
+          envSecrets:
+            - name: dagster-pipelines-secrets
           replicaCount: 1
+          port: 3030
     runLauncher:
       type: K8sRunLauncher
       config:

@@ -37,7 +37,7 @@ spec:
     push:
       branch: main
   update:
-    path: .
+    path: . #./apps/production
     strategy: Setters
 ---
 

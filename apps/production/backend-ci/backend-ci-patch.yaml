@@ -8,5 +8,3 @@ spec:
       containers:
         - name: backend-ci
           image: ghcr.io/ihoholko/backend-ci:0.1.1 # {"$imagepolicy": "default:backend-ci"}
-
-# image: ghcr.io/ihoholko/backend-ci:0.1.0 # {"$imagepolicy": "default:backend-ci:tag"}

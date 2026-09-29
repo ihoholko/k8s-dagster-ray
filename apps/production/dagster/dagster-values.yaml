@@ -13,8 +13,8 @@ spec:
       deployments:
         - name: dagster-pipelines
           image:
-            tag: ~
-            repository: "docker.io/dagster/user-code-example"
-            pullPolicy: IfNotPresent
+            repository: ghcr.io/ihoholko/dagster-pipelines
+            tag: 0.0.0 # {"$imagepolicy": "dagster:dagster-pipelines:tag"}
+            pullPolicy: Always
           replicaCount: 2
           port: 3030
