@@ -59,3 +59,13 @@ spec:
           runK8sConfig:
             jobSpecConfig:
               ttlSecondsAfterFinished: 7200
+            # podSpecConfig:
+            #   nodeSelector:
+            #     
+        resources:
+          requests:
+            cpu: "1"
+            memory: "1Gi"
+          limits:
+            cpu: "1"
+            memory: "1Gi"
