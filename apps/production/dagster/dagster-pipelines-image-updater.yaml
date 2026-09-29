@@ -17,8 +17,8 @@ spec:
   prune: true
   postBuild:
     substitute:
-      repository: ghcr.io/ihoholko/backend-ci
-      app_name: backend-ci
+      repository: ghcr.io/ihoholko/dagster-pipelines
+      app_name: dagster-pipelines
       reg_secret: ghcr-credentials
   patches:
     - patch: |-
