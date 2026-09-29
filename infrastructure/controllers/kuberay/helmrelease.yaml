@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kuberay-operator
+  namespace: flux-system
+spec:
+  interval: 1h
+
+  chart:
+    spec:
+      chart: kuberay-operator
+      version: "1.7.x"
+      sourceRef:
+        kind: HelmRepository
+        name: kuberay
+        namespace: flux-system
+
+  values:
+    singleNamespaceInstall: true
+    watchNamespace:
+      - ray

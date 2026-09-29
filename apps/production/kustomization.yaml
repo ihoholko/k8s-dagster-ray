@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../base/dagster
   - ../base/backend-ci
+  - ../base/ray
   - backend-ci/backend-ci-image-updater.yaml
   - dagster/dagster-pipelines-image-updater.yaml
 
