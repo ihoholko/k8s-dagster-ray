@@ -22,7 +22,7 @@ spec:
       name: RetryOnFailure
   values:
     image:
-      repository: docker.io/minio/minio
+      repository: quay.io/minio/minio
       tag: RELEASE.2024-12-18T13-15-44Z
       pullPolicy: IfNotPresent
     mode: standalone
