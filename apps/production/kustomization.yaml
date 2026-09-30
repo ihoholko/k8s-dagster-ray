@@ -4,6 +4,7 @@ resources:
   - ../base/dagster
   - ../base/backend-ci
   - ../base/ray
+  - ../seaweedfs
   - backend-ci/backend-ci-image-updater.yaml
   - dagster/dagster-pipelines-image-updater.yaml
 
