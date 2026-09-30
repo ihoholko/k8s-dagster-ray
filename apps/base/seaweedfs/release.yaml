@@ -63,12 +63,6 @@ spec:
           accessKey: admin
           secretKey: CHANGE_ME
 
-      createBuckets:
-        - name: robotics
-        - name: raw
-        - name: datasets
-        - name: models
-
     admin:
       enabled: true
 
