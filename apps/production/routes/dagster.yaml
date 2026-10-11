@@ -14,5 +14,5 @@ spec:
 
   rules:
     - backendRefs:
-        - name: dagster-webserver
+        - name: dagster-dagster-webserver
           port: 80
