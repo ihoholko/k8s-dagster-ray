@@ -6,4 +6,4 @@
   value: ghcr.io/ihoholko/ray-cpu:0.2.0 # {"$imagepolicy": "ray:ray-cpu"}
 - op: replace
   path: /spec/workerGroupSpecs/1/template/spec/containers/0/image
-  value: ghcr.io/ihoholko/ray-gpu:0.1.0 # {"$imagepolicy": "ray:ray-gpu"}
+  value: ghcr.io/ihoholko/ray-gpu:0.1.1 # {"$imagepolicy": "ray:ray-gpu"}
