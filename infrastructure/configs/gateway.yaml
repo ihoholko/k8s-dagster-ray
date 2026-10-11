@@ -1,10 +1,25 @@
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: GatewayClass
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
 metadata:
-  name: envoy
+  name: envoy-nodeport
+  namespace: envoy-gateway-system
 spec:
-  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyService:
+        type: NodePort
+        patch:
+          type: StrategicMerge
+          value:
+            spec:
+              externalTrafficPolicy: Cluster
+              ports:
+                - name: http
+                  port: 80
+                  protocol: TCP
+                  targetPort: 10080
+                  nodePort: 30080
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
@@ -13,6 +28,13 @@ metadata:
   namespace: envoy-gateway-system
 spec:
   gatewayClassName: envoy
+
+  infrastructure:
+    parametersRef:
+      group: gateway.envoyproxy.io
+      kind: EnvoyProxy
+      name: envoy-nodeport
+
   listeners:
     - name: http
       protocol: HTTP
