@@ -5,3 +5,4 @@ resources:
   - dagster.yaml
   - seaweedfs.yaml
   - backend-ci.yaml
+  - ray.yaml
