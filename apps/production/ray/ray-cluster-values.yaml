@@ -1,18 +1,6 @@
-apiVersion: ray.io/v1
-kind: RayCluster
-metadata:
-  name: ray
-spec:
-  headGroupSpec:
-    template:
-      spec:
-        containers:
-          - name: ray-head
-            image: ghcr.io/ihoholko/ray-cpu:0.2.0 # {"$imagepolicy": "ray:ray-cpu"}
-  workerGroupSpecs:
-    - groupName: cpu-workers
-      template:
-        spec:
-          containers:
-            - name: ray-worker
-              image: ghcr.io/ihoholko/ray-cpu:0.2.0 # {"$imagepolicy": "ray:ray-cpu"}
+- op: replace
+  path: /spec/headGroupSpec/template/spec/containers/0/image
+  value: ghcr.io/ihoholko/ray-cpu:0.2.0 # {"$imagepolicy": "ray:ray-cpu"}
+- op: replace
+  path: /spec/workerGroupSpecs/0/template/spec/containers/0/image
+  value: ghcr.io/ihoholko/ray-cpu:0.2.0 # {"$imagepolicy": "ray:ray-cpu"}

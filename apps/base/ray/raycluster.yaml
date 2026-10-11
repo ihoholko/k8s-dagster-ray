@@ -37,8 +37,10 @@ spec:
 
     - groupName: cpu-workers
       replicas: 1
-      minReplicas: 0
+      minReplicas: 2
       maxReplicas: 10
+      rayStartParams:
+        resources: '"{\"cpu-workers\": 1}"'
 
       template:
         spec:
