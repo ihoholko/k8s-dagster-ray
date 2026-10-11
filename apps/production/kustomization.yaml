@@ -9,6 +9,7 @@ resources:
   - backend-ci/backend-ci-image-updater.yaml
   - dagster/dagster-pipelines-image-updater.yaml
   - ray/ray-cluster-image-updater.yaml
+  - ray/ray-gpu-image-updater.yaml
 
 patches:
   - path: dagster/dagster-values.yaml

@@ -65,8 +65,8 @@ spec:
 
     - groupName: gpu-workers
 
-      replicas: 0
-      minReplicas: 0
+      replicas: 1
+      minReplicas: 1
       maxReplicas: 1
       rayStartParams:
         resources: '"{\"gpu-workers\": 1}"'
@@ -81,7 +81,7 @@ spec:
 
           containers:
             - name: ray-worker
-              image: ghcr.io/ihoholko/ray:0.1.0
+              image: ghcr.io/ihoholko/ray-gpu:0.1.0
               imagePullPolicy: IfNotPresent
 
               resources:
