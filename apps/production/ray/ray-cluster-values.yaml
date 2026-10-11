@@ -8,11 +8,11 @@ spec:
       spec:
         containers:
           - name: ray-head
-            image: 0.2.0 # {"$imagepolicy": "ray:ray-cpu"}
+            image: ghcr.io/ihoholko/ray-cpu:0.2.0 # {"$imagepolicy": "ray:ray-cpu"}
   workerGroupSpecs:
     - groupName: cpu-workers
       template:
         spec:
           containers:
             - name: ray-worker
-              image: 0.2.0 # {"$imagepolicy": "ray:ray-cpu"}
+              image: ghcr.io/ihoholko/ray-cpu:0.2.0 # {"$imagepolicy": "ray:ray-cpu"}
