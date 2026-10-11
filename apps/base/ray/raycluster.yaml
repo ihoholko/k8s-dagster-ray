@@ -63,32 +63,34 @@ spec:
     # GPU workers
     # --------------------------------
 
-    # - groupName: gpu-workers
+    - groupName: gpu-workers
 
-    #   replicas: 0
-    #   minReplicas: 0
-    #   maxReplicas: 1
+      replicas: 0
+      minReplicas: 0
+      maxReplicas: 1
+      rayStartParams:
+        resources: '"{\"gpu-workers\": 1}"'
 
-    #   template:
-    #     spec:
-    #       imagePullSecrets:
-    #         - name: ghcr-credentials
+      template:
+        spec:
+          imagePullSecrets:
+            - name: ghcr-credentials
 
-    #       nodeSelector:
-    #         accelerator: nvidia
+          nodeSelector:
+            accelerator: nvidia
 
-    #       containers:
-    #         - name: ray-worker
-    #           image: ghcr.io/ihoholko/ray:0.1.0
-    #           imagePullPolicy: IfNotPresent
+          containers:
+            - name: ray-worker
+              image: ghcr.io/ihoholko/ray:0.1.0
+              imagePullPolicy: IfNotPresent
 
-    #           resources:
-    #             requests:
-    #               cpu: "4"
-    #               memory: 8Gi
-    #               nvidia.com/gpu: "1"
+              resources:
+                requests:
+                  cpu: "4"
+                  memory: 8Gi
+                  nvidia.com/gpu: "1"
 
-    #             limits:
-    #               cpu: "4"
-    #               memory: 8Gi
-    #               nvidia.com/gpu: "1"
+                limits:
+                  cpu: "4"
+                  memory: 8Gi
+                  nvidia.com/gpu: "1"
