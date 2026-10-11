@@ -37,3 +37,12 @@ spec:
   chartRef:
     kind: OCIRepository
     name: gateway-helm
+    
+  values:
+    envoyProxy:
+      provider:
+        type: Kubernetes
+
+      kubernetes:
+        envoyService:
+          type: NodePort

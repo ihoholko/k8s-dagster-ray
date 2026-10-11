@@ -68,6 +68,11 @@ spec:
 
       replicas: 1
 
+      secret:
+        existingSecret: seaweedfs-admin-auth
+        userKey: admin-user
+        pwKey: admin-password
+
       ingress:
         enabled: false
 

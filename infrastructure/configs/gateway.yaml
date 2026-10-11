@@ -9,16 +9,14 @@ spec:
     kubernetes:
       envoyService:
         type: NodePort
+        externalTrafficPolicy: Cluster
         patch:
           type: StrategicMerge
           value:
             spec:
-              externalTrafficPolicy: Cluster
               ports:
                 - name: http
                   port: 80
-                  protocol: TCP
-                  targetPort: 10080
                   nodePort: 30080
 ---
 apiVersion: gateway.networking.k8s.io/v1
